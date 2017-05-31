@@ -1,5 +1,8 @@
 -- Tables lesson
--- to run mysql file: mysql -u codeup -p < tables_lesson.sql
+-- 1: run mysql file -> mysql -u codeup -p < tables_lesson.sql
+-- 2: connect to the MySQL client normally -> mysql -u codeup -p
+-- SHOW CREATE TABLE quotes; or SHOW CREATE TABLE quotes\G
+-- DESCRIBE quotes;
 
 -- to select database()
 USE codeup_test_db;
