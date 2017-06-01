@@ -25,3 +25,9 @@ ORDER BY last_name, first_name;
 SELECT * FROM employees.employees
 WHERE last_name  LIKE 'E%'
 ORDER BY emp_no;
+
+# reversing order
+
+SELECT * FROM employees.employees
+WHERE last_name  LIKE 'E%'
+ORDER BY emp_no DESC ;
