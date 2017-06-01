@@ -1,5 +1,11 @@
 USE codeup_test_db;
 
+# delete everything
+-- DELETE FROM albums;
+
+# delete everything and restart id (counter for the auto_increment column)
+TRUNCATE albums
+
 -- To see table data -> select * from albums;
 
 INSERT INTO albums

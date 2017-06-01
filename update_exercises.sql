@@ -14,12 +14,21 @@ FROM albums;
 
 
 
+
 SELECT 'All albums released before 1980' AS '';
 SELECT *
 FROM albums
 WHERE release_date < 1980;
 
 SELECT 'Move all the albums before 1980 back to the 1800s' AS '';
+UPDATE albums
+SET  release_date = release_date - 100
+WHERE release_date < 1980;
+
+SELECT 'All albums released before 1980' AS '';
+SELECT *
+FROM albums
+WHERE release_date < 1980;
 
 
 
