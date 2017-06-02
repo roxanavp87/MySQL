@@ -39,7 +39,7 @@ SELECT *
 FROM users;
 
 # Join / Inner Join
-SELECT users.name as user_name, roles.name as role_name, count(roles.name) as count_roles
+SELECT users.name as user_name, roles.name as role_name, count(*) as role_count
 FROM users
   JOIN roles ON users.role_id = roles.id
 GROUP BY role_name;
@@ -54,3 +54,6 @@ FROM users
 SELECT users.name AS user_name, roles.name AS role_name
 FROM users
   RIGHT JOIN roles ON users.role_id = roles.id;
+
+
+
