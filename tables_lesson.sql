@@ -9,7 +9,7 @@ USE codeup_test_db;
 
 DROP TABLE IF EXISTS quotes;
 DROP TABLE IF EXISTS people;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users_test;
 
 CREATE TABLE quotes (
   author_first_name VARCHAR(50),
