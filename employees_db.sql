@@ -36,3 +36,12 @@ JOIN dept_emp as de
     ON de.emp_no = t.emp_no
 WHERE de.dept_no LIKE 'd009' AND de.to_date LIKE '9999%'
 GROUP BY t.title;
+
+# Find the current salary of all current managers.
+SELECT d.dept_name as 'Department Name', concat(e.first_name, ' ', e.last_name) as 'Name', s.salary
+FROM employees as e
+JOIN salaries as s ON e.emp_no = s.emp_no
+JOIN dept_manager AS dm ON e.emp_no = dm.emp_no
+JOIN departments as d ON dm.dept_no = d.dept_no
+WHERE dm.to_date like '9999%' AND s.to_date like '9999%'
+GROUP BY d.dept_name;
