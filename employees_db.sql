@@ -34,7 +34,7 @@ SELECT t.title AS 'Title', count(t.title) AS 'Count'
 FROM titles AS t
 JOIN dept_emp as de
     ON de.emp_no = t.emp_no
-WHERE de.dept_no LIKE 'd009' AND de.to_date LIKE '9999%'
+WHERE de.dept_no LIKE 'd009' AND de.to_date LIKE '9999%' AND t.to_date LIKE '9999%'
 GROUP BY t.title;
 
 # Find the current salary of all current managers.
@@ -45,3 +45,22 @@ JOIN dept_manager AS dm ON e.emp_no = dm.emp_no
 JOIN departments as d ON dm.dept_no = d.dept_no
 WHERE dm.to_date like '9999%' AND s.to_date like '9999%'
 GROUP BY d.dept_name;
+
+# Find the names of all current employees, their department name, and their current manager's name.
+SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name' , d.dept_name as 'Department Name'-- , dm.emp_no
+FROM employees as e
+JOIN dept_emp as de ON e.emp_no = de.emp_no
+JOIN departments AS d ON de.dept_no = d.dept_no
+JOIN dept_manager as dm ON e.emp_no = dm.emp_no
+WHERE de.to_date LIKE '9999%' -- AND dm.to_date LIKE '9999%'
+ORDER BY 'Employee Name ';
+
+# Find the names of all current employees and their department name
+SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name'-- concat(first_name, ' ', last_name) as 'Employee Manager'
+FROM employees AS e
+JOIN dept_emp as de ON e.emp_no = de.emp_no
+JOIN departments as d ON de.dept_no = d.dept_no
+WHERE de.to_date LIKE '9999%'
+ORDER BY d.dept_name;
+
+
