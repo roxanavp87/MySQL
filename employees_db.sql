@@ -56,7 +56,7 @@ WHERE de.to_date LIKE '9999%' -- AND dm.to_date LIKE '9999%'
 ORDER BY 'Employee Name ';
 
 # Find the names of all current employees and their department name
-SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name'-- concat(first_name, ' ', last_name) as 'Employee Manager'
+SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name'
 FROM employees AS e
 JOIN dept_emp as de ON e.emp_no = de.emp_no
 JOIN departments as d ON de.dept_no = d.dept_no
@@ -64,23 +64,23 @@ WHERE de.to_date LIKE '9999%'
 ORDER BY d.dept_name;
 
 
-SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name', dm.emp_no-- concat(first_name, ' ', last_name) as 'Employee Manager'
+SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name' , dm.emp_no-- concat(first_name, ' ', last_name) as 'Employee Manager'
 FROM employees AS e
   JOIN dept_emp as de ON e.emp_no = de.emp_no
-  JOIN dept_manager as dm ON e.emp_no = dm.emp_no
   JOIN departments as d ON de.dept_no = d.dept_no
+  LEFT JOIN dept_manager as dm ON e.emp_no = dm.emp_no
 WHERE de.to_date LIKE '9999%'
 ORDER BY d.dept_name;
 
 
-SELECT concat(employees.first_name, ' ',employees.last_name) as 'Employee Name',
-       departments.dept_name as 'Department Name',
-       concat(managers.first_name, ' ',managers.last_name) as 'Manager Name'
-FROM employees as managers
-  JOIN dept_manager ON managers.emp_no = dept_manager.emp_no
-  JOIN departments ON dept_manager.dept_no = departments.dept_no
-  RIGHT JOIN dept_emp on dept_manager.dept_no = dept_emp.dept_no
-  JOIN employees on dept_emp.emp_no = employees.emp_no
-WHERE dept_manager.to_date > now()
+SELECT concat(e.first_name, ' ', e.last_name), d.dept_name, em.first_name
+FROM employees as e
+  JOIN dept_manager as dm ON e.emp_no = dm.emp_no
+  JOIN departments as d ON dm.dept_no = d.dept_no
+  RIGHT JOIN employees as em ON e.emp_no = em.emp_no
+WHERE dm.to_date > now();
+
+
+
 
 

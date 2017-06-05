@@ -50,3 +50,24 @@ WHERE gender = 'F' AND emp_no IN (
   FROM dept_manager
   WHERE to_date LIKE '9999%'
 );
+
+
+SELECT concat(e.first_name, ' ', e.last_name) AS name, d.dept_name
+FROM employees as e
+JOIN dept_manager as dm ON e.emp_no = dm.emp_no
+JOIN departments AS d ON dm.dept_no = d.dept_no
+WHERE e.gender = 'F' AND dm.to_date > now();
+
+
+# Find all the department names that have female managers
+SELECT dept_name
+FROM departments
+WHERE dept_no IN (
+  SELECT dept_no
+  FROM dept_manager
+  WHERE to_date > NOW() AND emp_no IN (
+    SELECT emp_no
+    FROM employees
+    WHERE gender = 'F'
+  )
+);
