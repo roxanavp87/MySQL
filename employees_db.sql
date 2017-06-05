@@ -64,21 +64,17 @@ WHERE de.to_date LIKE '9999%'
 ORDER BY d.dept_name;
 
 
-SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name' , dm.emp_no-- concat(first_name, ' ', last_name) as 'Employee Manager'
+SELECT concat(e.first_name, ' ', e.last_name) as 'Employee Name',  d.dept_name as 'Department Name', concat(em.first_name, ' ' ,em.last_name) AS 'Manager Name'
 FROM employees AS e
   JOIN dept_emp as de ON e.emp_no = de.emp_no
   JOIN departments as d ON de.dept_no = d.dept_no
-  LEFT JOIN dept_manager as dm ON e.emp_no = dm.emp_no
-WHERE de.to_date LIKE '9999%'
+  JOIN dept_manager as dm ON d.dept_no = dm.dept_no
+  JOIN employees as em ON dm.emp_no = em.emp_no
+WHERE de.to_date LIKE '9999%' AND dm.to_date > now()
 ORDER BY d.dept_name;
 
 
-SELECT concat(e.first_name, ' ', e.last_name), d.dept_name, em.first_name
-FROM employees as e
-  JOIN dept_manager as dm ON e.emp_no = dm.emp_no
-  JOIN departments as d ON dm.dept_no = d.dept_no
-  RIGHT JOIN employees as em ON e.emp_no = em.emp_no
-WHERE dm.to_date > now();
+
 
 
 

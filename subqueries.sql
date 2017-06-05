@@ -71,3 +71,5 @@ WHERE dept_no IN (
     WHERE gender = 'F'
   )
 );
+
+# Find the average salary for women
